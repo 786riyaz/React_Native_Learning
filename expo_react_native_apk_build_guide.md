@@ -1,4 +1,4 @@
-# React Native Expo → APK Build Guide (Revision Document)
+# React Native Expo → APK Build Guide (Complete Revision Document)
 
 This document explains **all commands and steps** used to convert your **React Native Expo app** into an **APK file**.
 
@@ -8,25 +8,25 @@ This document explains **all commands and steps** used to convert your **React N
 
 Expo is a framework used to build **React Native mobile applications** easily.
 
-Benefits:
+## Benefits
 
-- No Android Studio required
-- Easy setup
-- Fast development
-- Cloud builds
+* No Android Studio required
+* Easy setup
+* Fast development
+* Cloud builds
 
 ---
 
 # 2. What is EAS
 
-EAS = Expo Application Services
+**EAS = Expo Application Services**
 
 EAS allows you to:
 
-- Build APK
-- Build AAB
-- Deploy app
-- Manage credentials
+* Build APK
+* Build AAB
+* Deploy app
+* Manage credentials
 
 ---
 
@@ -100,6 +100,12 @@ This installs compatible version for Expo.
 npx expo start -c
 ```
 
+OR
+
+```
+npx expo start --clear
+```
+
 This clears metro cache.
 
 ---
@@ -120,7 +126,52 @@ eas build -p android --profile preview
 
 ---
 
-# 9. Build Process
+# 9. APK Type (Important)
+
+If you want **direct APK (not Play Store AAB)**
+
+Update **eas.json**
+
+```
+{
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      }
+    }
+  }
+}
+```
+
+Then run:
+
+```
+eas build -p android --profile preview
+```
+
+---
+
+# 10. App Configuration
+
+Update **app.json**
+
+```
+{
+  "expo": {
+    "name": "Admin Panel",
+    "slug": "admin-panel",
+    "version": "1.0.0",
+    "android": {
+      "package": "com.admin.panel"
+    }
+  }
+}
+```
+
+---
+
+# 11. Build Process
 
 When running build:
 
@@ -136,13 +187,13 @@ YES
 
 Expo automatically:
 
-- Creates keystore
-- Signs app
-- Builds APK
+* Creates keystore
+* Signs app
+* Builds APK
 
 ---
 
-# 10. After Build
+# 12. After Build
 
 Expo gives download link:
 
@@ -158,7 +209,7 @@ Install in mobile
 
 ---
 
-# 11. Change API URL (Production)
+# 13. Change API URL (Production)
 
 Update:
 
@@ -174,7 +225,7 @@ const BASE_URL = "https://your-api-url.com";
 
 ---
 
-# 12. Common Errors
+# 14. Common Errors
 
 ### Dependency error
 
@@ -194,7 +245,7 @@ npx expo start -c
 
 ---
 
-# 13. Useful Commands Summary
+# 15. Useful Commands Summary
 
 Install Expo CLI
 
@@ -232,6 +283,12 @@ Clear cache
 npx expo start -c
 ```
 
+OR
+
+```
+npx expo start --clear
+```
+
 Build APK
 
 ```
@@ -240,7 +297,7 @@ eas build -p android --profile preview
 
 ---
 
-# 14. Folder Structure (Recommended)
+# 16. Folder Structure (Recommended)
 
 ```
 app/
@@ -251,7 +308,7 @@ services/
 
 ---
 
-# 15. Final Workflow
+# 17. Final Workflow
 
 1. Build App
 2. Upload to Expo
@@ -261,39 +318,59 @@ services/
 
 ---
 
-# 16. Best Practices
+# 18. Best Practices
 
-- Always use expo install
-- Always test before build
-- Use hosted API
-- Use environment variables
+* Always use expo install
+* Always test before build
+* Use hosted API
+* Use environment variables
 
 ---
 
-# 17. Production Checklist
+# 19. Production Checklist
 
 Before building APK:
 
-- API URL updated
-- No localhost
-- No console logs
-- App name set
-- Version updated
+* API URL updated
+* No localhost
+* No console logs
+* App name set
+* Version updated
 
 ---
 
-# 18. Next Steps
+# 20. Complete Command Flow (Quick Copy)
+
+```
+npm install -g expo-cli
+npm install -g eas-cli
+eas login
+eas build:configure
+npx expo start -c
+eas build -p android --profile preview
+```
+
+---
+
+# 21. Optional Build Command
+
+```
+eas build -p android
+```
+
+---
+
+# 22. Next Steps
 
 You can now:
 
-- Publish to Play Store
-- Generate AAB
-- Add Splash screen
-- Add App icon
+* Publish to Play Store
+* Generate AAB
+* Add Splash screen
+* Add App icon
 
 ---
 
 # End of Document
 
-This document is created for revision and future builds.
-
+This document is created for **revision and future builds**.
